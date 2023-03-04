@@ -1,55 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Boston House price prediction</title>
-  </head>
-  <body>
-    <h1>CRIM ZN INDUS CHAS NOX RM AGE DIS RAD TAX PTRATIO B LSTAT Prediction</h1>
-    <form id="predict-form">
-      <label for="CRIM">CRIM:</label>
-      <input type="number" id="CRIM" name="CRIM"><br><br>
-      <label for="ZN">ZN:</label>
-      <input type="number" id="ZN" name="ZN"><br><br>
-      <label for="INDUS">INDUS:</label>
-      <input type="number" id="INDUS" name="INDUS"><br><br>
-      <label for="CHAS">CHAS:</label>
-      <input type="number" id="CHAS" name="CHAS"><br><br>
-      <label for="NOX">NOX:</label>
-      <input type="number" id="NOX" name="NOX"><br><br>
-      <label for="RM">RM:</label>
-      <input type="number" id="RM" name="RM"><br><br>
-      <label for="AGE">AGE:</label>
-      <input type="number" id="AGE" name="AGE"><br><br>
-      <label for="DIS">DIS:</label>
-      <input type="number" id="DIS" name="DIS"><br><br>
-      <label for="RAD">RAD:</label>
-      <input type="number" id="RAD" name="RAD"><br><br>
-      <label for="TAX">TAX:</label>
-      <input type="number" id="TAX" name="TAX"><br><br>
-      <label for="PTRATIO">PTRATIO:</label>
-      <input type="number" id="PTRATIO" name="PTRATIO"><br><br>
-      <label for="B">B:</label>
-      <input type="number" id="B" name="B"><br><br>
-      <label for="LSTAT">LSTAT:</label>
-      <input type="number" id="LSTAT" name="LSTAT"><br><br>
-      <input type="button" value="Predict" onclick="predict()">
-    </form>
-    <div id="result"></div>
-    <script>
-      function predict() {
-        const xhr = new XMLHttpRequest();
-        const url = "https://your-prediction-api-url";
-        const data = new FormData(document.getElementById("predict-form"));
-        xhr.open("POST", url, true);
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            document.getElementById("result").innerHTML = xhr.responseText;
-          }
-        };
-        xhr.send(data);
-      }
-    </script>
+<html >
 
-    {{prediction_text}}
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Boston House Price Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+      <input type="text" name="CRIM" placeholder="CRIM" required="required" /><br>
+    	<input type="text" name="ZN" placeholder="ZN" required="required" /><br>
+        <input type="text" name="INDUS" placeholder="INDUS" required="required" /><br>
+        <input type="text" name="CHAS" placeholder="CHAS" required="required" /><br>
+        <input type="text" name="NOX" placeholder="NOX" required="required" /><br>
+        <input type="text" name="RM" placeholder="RM" required="required" /><br>
+        <input type="text" name="Age" placeholder="Age" required="required" /><br>
+        <input type="text" name="DIS" placeholder="DIS" required="required" /><br>
+        <input type="text" name="RAD" placeholder="RAD" required="required" /><br>
+        <input type="text" name="TAX" placeholder="TAX" required="required" /><br>
+        <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required" /><br>
+        <input type="text" name="B" placeholder="B" required="required" /><br>
+        <input type="text" name="LSTAT" placeholder="LSTAT" required="required" /><br>
+
+       
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+  
+   
+ </div>
+ {{prediction_text}}
+
+</body>
 </html>
